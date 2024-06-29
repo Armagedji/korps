@@ -1,0 +1,43 @@
+{
+  "University": {
+    "Students": [
+      {
+        "students_code": "5",
+        "surname": "Иванов",
+        "firstname": "Иван",
+        "middlename": "Иванович"
+      }
+    ],
+    "Subjects": [
+      {
+        "subjects_code": "7",
+        "subjects_name": "Математический анализ",
+        "lecture_volume": "8",
+        "practice_volume": "8"
+      },
+      {
+        "subjects_code": "4",
+        "subjects_name": "Линейная алгебра",
+        "lecture_volume": "8",
+        "practice_volume": "8"
+      }
+    ],
+    "Schedule": [
+      {
+        "students_code": "5",
+        "subjects_code": "4",
+        "score": "5"
+      },
+      {
+        "students_code": "5",
+        "subjects_code": "7",
+        "score": "4"
+      },
+      {
+        "students_code": "5",
+        "subjects_code": "3",
+        "score": "4"
+      }
+    ]
+  }
+}

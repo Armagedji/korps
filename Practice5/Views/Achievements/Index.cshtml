@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Practice6.Models.Achievement>
+@{
+    ViewData["Title"] = "Achievements";
+    var student = ViewBag.Student as Practice6.Models.Student;
+}
+<div class="container">
+    <h1 class="display-4">@student.Full_name</h1>
+    <h3 class="mt-4">Достижения</h3>
+
+    <form method="get" asp-controller="Achievements" asp-action="Index" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label for="achievementTypeId" class="form-label">Вид:</label>
+                <select id="achievementTypeId" name="achievementTypeId" asp-items="ViewBag.AchievementTypes" class="form-select">
+                    <option value="">Все</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="startDate" class="form-label">Начальная дата:</label>
+                <input type="date" id="startDate" name="startDate" value="@Context.Request.Query["startDate"]" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="endDate" class="form-label">Конечная дата:</label>
+                <input type="date" id="endDate" name="endDate" value="@Context.Request.Query["endDate"]" class="form-control" />
+            </div>
+            <div class="col-md-3 align-self-end">
+                <button type="submit" class="btn btn-primary">Фильтр</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var achievement in Model)
+            {
+                <tr>
+                    <td>@achievement.Achievment_date.ToString("yyyy-MM-dd")</td>
+                    <td><span class="badge @GetBadgeClass(@achievement.Achievement_type.Name)">@achievement.Achievement_type.Name</span></td>
+                    <td>@achievement.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@functions {
+    private string GetBadgeClass(string type)
+    {
+        switch (type.ToLower())
+        {
+            case "учеба":
+                return "bg-primary";
+            case "спорт":
+                return "bg-success";
+            case "наука":
+                return "bg-info";
+            default:
+                return "bg-secondary";
+        }
+    }
+}

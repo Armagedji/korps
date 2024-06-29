@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Practice6.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Список учителей";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4">@ViewData["Title"]</h3>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Full_name)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Discipline.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Department.Name)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Full_name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Discipline.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Department.Name)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Practice6.Models.Performance>
+@{
+    ViewData["Title"] = "Оценки";
+    var student = ViewBag.Student as Practice6.Models.Student;
+}
+
+<div class="container mt-4">
+    <h1 class="display-4">@student.Full_name</h1>
+    <h3 class="mt-4">Оценки</h3>
+
+    <form method="get" asp-controller="Performances" asp-action="Index" class="row g-3 mt-3">
+        <div class="col-md-4">
+            <label for="semester" class="form-label">Семестр:</label>
+            <input type="text" id="semester" name="semester" class="form-control" value="@Context.Request.Query["semester"]" />
+        </div>
+        <div class="col-md-4">
+            <label for="subjectName" class="form-label">Название предмета:</label>
+            <input type="text" id="subjectName" name="subjectName" class="form-control" value="@Context.Request.Query["subjectName"]" />
+        </div>
+        <div class="col-md-4">
+            <label for="grade" class="form-label">Оценка:</label>
+            <input type="text" id="grade" name="grade" class="form-control" value="@Context.Request.Query["grade"]" />
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </div>
+    </form>
+
+    <table class="table table-striped mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Семестр</th>
+                <th scope="col">Название предмета</th>
+                <th scope="col">Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var performance in Model)
+            {
+                <tr>
+                    <td>@performance.Semester</td>
+                    <td>@performance.Discipline.Name</td>
+                    <td>@performance.Score</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
